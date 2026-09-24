@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import logger from './middlewares/logger.js';
+import errorMiddleware from './middlewares/error.js';
 
 dotenv.config();
 
@@ -22,23 +23,15 @@ app.get('/api/health', (request, response) => {
   });
 });
 
-app.use((request, response) => {
-  response.status(404).json({
-    success: false,
-    data: null,
-    message: `Ruta no encontrada: ${request.method} ${request.path}`,
-  });
+app.use((request, response, next) => {
+  const error = new Error(
+    `Ruta no encontrada: ${request.method} ${request.path}`
+  );
+  error.status = 404;
+  next(error);
 });
 
-app.use((error, request, response, next) => {
-  void next;
-  console.error(error);
-  response.status(500).json({
-    success: false,
-    data: null,
-    message: `Error interno del servidor en ${request.path}`,
-  });
-});
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   console.log(`Backend escuchando en http://localhost:${port}`);
