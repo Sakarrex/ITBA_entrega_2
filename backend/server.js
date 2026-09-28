@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import logger from './middlewares/logger.js';
 import errorMiddleware from './middlewares/error.js';
+import productosRouter from './routes/productos.js';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(logger);
+app.use('/api/productos', productosRouter);
 
 app.get('/api/health', (request, response) => {
   response.json({
