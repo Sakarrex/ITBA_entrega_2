@@ -1,17 +1,20 @@
-import express from 'express';
+import { Router } from 'express';
 import { PRODUCTOS } from '../data/productos.js';
 
-const router = express.Router();
+const router = Router();
 
-router.get('/', (request, response) => {
+router.get('/', obtenerProductos);
+router.get('/:id', obtenerProductoPorId);
+
+export function obtenerProductos(request, response) {
   response.json({
     success: true,
     data: PRODUCTOS,
     message: 'Productos obtenidos correctamente',
   });
-});
+}
 
-router.get('/:id', (request, response, next) => {
+export function obtenerProductoPorId(request, response, next) {
   const producto = PRODUCTOS.find(
     (item) => String(item.id) === request.params.id
   );
@@ -29,6 +32,6 @@ router.get('/:id', (request, response, next) => {
     data: producto,
     message: 'Producto obtenido correctamente',
   });
-});
+}
 
 export default router;
