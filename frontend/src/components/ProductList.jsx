@@ -1,4 +1,3 @@
-import React from 'react';
 import ProductCard from './ProductCard.jsx';
 
 function ProductList({ productos, onSeleccionar, onAgregar }) {

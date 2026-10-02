@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Navbar({ cantidadCarrito }) {
   return (
     <header className="navbar">
