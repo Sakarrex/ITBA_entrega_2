@@ -1,18 +1,22 @@
-// Versión mínima para probar App. La completa el Participante 4.
+import React from 'react';
+import ProductCard from './ProductCard.jsx';
+
 function ProductList({ productos, onSeleccionar, onAgregar }) {
+  if (!productos || productos.length === 0) {
+    return <p>No hay productos disponibles.</p>;
+  }
+
   return (
-    <ul>
+    <section className="product-list-grid">
       {productos.map((producto) => (
-        <li key={producto.id}>
-          <button type="button" onClick={() => onSeleccionar(producto)}>
-            {producto.nombre}
-          </button>
-          <button type="button" onClick={() => onAgregar(producto)}>
-            Añadir al carrito
-          </button>
-        </li>
+        <ProductCard
+          key={producto.id}
+          producto={producto}
+          onSeleccionar={onSeleccionar}
+          onAgregar={onAgregar}
+        />
       ))}
-    </ul>
+    </section>
   );
 }
 
