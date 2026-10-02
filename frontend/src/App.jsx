@@ -1,16 +1,38 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
-import ProductList from './components/ProductList.jsx';
-import ProductDetail from './components/ProductDetail.jsx';
 import Footer from './components/Footer.jsx';
+import CartPage from './pages/cart-page.jsx';
+import ContactPage from './pages/contact-page.jsx';
+import HomePage from './pages/home-page.jsx';
+import ProductDetailPage from './pages/product-detail-page.jsx';
+import ProductsPage from './pages/products-page.jsx';
 import { obtenerProductos } from './services/productos.js';
+
+function AppLayout({ productos, cargando, error, carrito, agregarAlCarrito }) {
+  const cantidadCarrito = carrito.reduce(
+    (total, item) => total + item.cantidad,
+    0
+  );
+
+  return (
+    <>
+      <Navbar cantidadCarrito={cantidadCarrito} />
+      <main>
+        <Outlet
+          context={{ productos, cargando, error, carrito, agregarAlCarrito }}
+        />
+      </main>
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
   const [carrito, setCarrito] = useState([]);
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   useEffect(() => {
     async function cargarProductos() {
@@ -31,54 +53,41 @@ function App() {
   }, []);
 
   function agregarAlCarrito(producto) {
-    const existe = carrito.find((item) => item.id === producto.id);
+    setCarrito((carritoActual) => {
+      const existe = carritoActual.find((item) => item.id === producto.id);
 
-    if (existe) {
-      setCarrito(
-        carrito.map((item) =>
+      if (existe) {
+        return carritoActual.map((item) =>
           item.id === producto.id
             ? { ...item, cantidad: item.cantidad + 1 }
             : item
-        )
-      );
-      return;
-    }
+        );
+      }
 
-    setCarrito([...carrito, { ...producto, cantidad: 1 }]);
+      return [...carritoActual, { ...producto, cantidad: 1 }];
+    });
   }
 
-  let cantidadCarrito = 0;
-  for (const item of carrito) {
-    cantidadCarrito += item.cantidad;
-  }
+  const layoutProps = {
+    productos,
+    cargando,
+    error,
+    carrito,
+    agregarAlCarrito,
+  };
 
   return (
-    <>
-      <Navbar cantidadCarrito={cantidadCarrito} />
-
-      <main>
-        {cargando && <p className="estado-carga">Cargando productos…</p>}
-
-        {error && <p className="estado-error">{error}</p>}
-
-        {!cargando &&
-          !error &&
-          (productoSeleccionado ? (
-            <ProductDetail
-              producto={productoSeleccionado}
-              onVolver={() => setProductoSeleccionado(null)}
-              onAgregar={agregarAlCarrito}
-            />
-          ) : (
-            <ProductList
-              productos={productos}
-              onSeleccionar={setProductoSeleccionado}
-              onAgregar={agregarAlCarrito}
-            />
-          ))}
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout {...layoutProps} />}>
+          <Route index element={<HomePage />} />
+          <Route path="productos" element={<ProductsPage />} />
+          <Route path="productos/:productoId" element={<ProductDetailPage />} />
+          <Route path="carrito" element={<CartPage />} />
+          <Route path="contacto" element={<ContactPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

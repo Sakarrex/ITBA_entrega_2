@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import menuIcon from '../assets/icons/menu.svg';
 import shoppingCartIcon from '../assets/icons/shopping_cart.svg';
 import './Navbar.css';
@@ -21,22 +22,22 @@ function Navbar({ cantidadCarrito }) {
             <img src={menuIcon} alt="" width="24" height="24" />
           </button>
 
-          <a className="nav-logo" href="index.html">
+          <Link className="nav-logo" to="/">
             <img src="/assets/img/logo.svg" alt="" width="44" height="44" />
             <span className="nav-logo-text">Hermanos Jota</span>
-          </a>
+          </Link>
 
           <div className="nav-actions">
-            <a
+            <Link
               className="nav-cart"
-              href="carrito.html"
+              to="/carrito"
               aria-label="Ver carrito de compras"
             >
               <img src={shoppingCartIcon} alt="" width="24" height="24" />
               <span className="nav-cart-count" id="cart-count">
                 {cantidadCarrito}
               </span>
-            </a>
+            </Link>
           </div>
 
           <ul
@@ -44,13 +45,19 @@ function Navbar({ cantidadCarrito }) {
             id="nav-menu"
           >
             <li>
-              <a href="index.html">Inicio</a>
+              <Link to="/" onClick={() => setMenuAbierto(false)}>
+                Inicio
+              </Link>
             </li>
             <li>
-              <a href="productos.html">Catalogo</a>
+              <Link to="/productos" onClick={() => setMenuAbierto(false)}>
+                Catálogo
+              </Link>
             </li>
             <li>
-              <a href="contacto.html">Contacto</a>
+              <Link to="/contacto" onClick={() => setMenuAbierto(false)}>
+                Contacto
+              </Link>
             </li>
           </ul>
         </nav>

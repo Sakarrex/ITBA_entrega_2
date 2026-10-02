@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import instagramIcon from '../assets/icons/instagram.svg';
 import whatsappIcon from '../assets/icons/whatsapp.svg';
 import './Footer.css';
@@ -65,9 +66,9 @@ export default function Footer() {
             </p>
           </address>
           <p>
-            <a className="footer-link" href="contacto.html">
+            <Link className="footer-link" to="/contacto">
               Escribinos un mensaje
-            </a>
+            </Link>
           </p>
         </section>
       </div>

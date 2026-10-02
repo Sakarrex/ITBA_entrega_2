@@ -27,7 +27,9 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .site-header .nav-toggle:hover {
@@ -61,7 +63,7 @@
 }
 
 .site-header .nav-logo-text {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #f5e6d3;
@@ -128,7 +130,9 @@
   font-size: 1rem;
   padding: 10px 8px;
   border-radius: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .site-header .nav-menu a:hover,
