@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import ProductList from './components/ProductList.jsx';
 import ProductDetail from './components/ProductDetail.jsx';
+import Footer from './components/Footer.jsx';
 import { obtenerProductos } from './services/productos.js';
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
             />
           ))}
       </main>
+      <Footer/>
     </>
   );
 }

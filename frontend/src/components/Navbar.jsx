@@ -1,10 +1,14 @@
-// Versión mínima para probar App. La completa el Participante 4.
+import React from 'react';
+
 function Navbar({ cantidadCarrito }) {
   return (
-    <header>
-      <nav>
-        <span>Hermanos Jota</span>
-        <span>Carrito: {cantidadCarrito}</span>
+    <header className="navbar">
+      <nav className="navbar-container">
+        <span className="navbar-title">Hermanos Jota</span>
+        <div className="navbar-cart">
+          <span className="cart-icon">🛒</span>
+          <span className="cart-badge">Carrito: {cantidadCarrito}</span>
+        </div>
       </nav>
     </header>
   );
