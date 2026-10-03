@@ -1,8 +1,19 @@
+import './ProductCard.css';
+
+const formatearPrecio = new Intl.NumberFormat('es-AR', {
+  style: 'currency',
+  currency: 'ARS',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 export default function ProductCard({ producto, onSeleccionar, onAgregar }) {
-  const { nombre, precio, imagen, categoria } = producto;
+  const { nombre, precio, precioOriginal, oferta, imagen, categoria } =
+    producto;
 
   return (
     <article className="product-card">
+      {oferta && <span className="product-card-badge">OFERTA</span>}
       {imagen && (
         <img
           src={imagen}
@@ -16,7 +27,14 @@ export default function ProductCard({ producto, onSeleccionar, onAgregar }) {
           <span className="product-card-category">{categoria}</span>
         )}
         <h3 className="product-card-title">{nombre}</h3>
-        <p className="product-card-price">${precio}</p>
+        {oferta && precioOriginal && (
+          <p className="product-card-price-original">
+            <del aria-label="Precio anterior">
+              {formatearPrecio.format(precioOriginal)}
+            </del>
+          </p>
+        )}
+        <p className="product-card-price">{formatearPrecio.format(precio)}</p>
         <div className="product-card-actions">
           <button
             type="button"

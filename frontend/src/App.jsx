@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import Footer from './components/Footer.jsx';
+import Navbar from './components/navbar/Navbar.jsx';
+import Footer from './components/footer/Footer.jsx';
 import CartPage from './pages/cart-page.jsx';
 import ContactPage from './pages/contact-page.jsx';
-import HomePage from './pages/home-page.jsx';
+import HomePage from './pages/home-page/home-page.jsx';
 import ProductDetailPage from './pages/product-detail-page.jsx';
 import ProductsPage from './pages/products-page.jsx';
 import { obtenerProductos } from './services/productos.js';

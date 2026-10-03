@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import instagramIcon from '../assets/icons/instagram.svg';
-import whatsappIcon from '../assets/icons/whatsapp.svg';
+import instagramIcon from '../../assets/icons/instagram.svg';
+import whatsappIcon from '../../assets/icons/whatsapp.svg';
 import './Footer.css';
 
 export default function Footer() {
