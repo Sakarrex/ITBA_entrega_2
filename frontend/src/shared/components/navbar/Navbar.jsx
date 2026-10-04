@@ -23,7 +23,7 @@ function Navbar({ cantidadCarrito }) {
           </button>
 
           <Link className="nav-logo" to="/">
-            <img src="/assets/img/logo.svg" alt="" width="44" height="44" />
+            <img src="/logo.svg" alt="" width="44" height="44" />
             <span className="nav-logo-text">Hermanos Jota</span>
           </Link>
 

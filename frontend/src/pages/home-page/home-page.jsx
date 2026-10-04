@@ -95,7 +95,7 @@ export default function HomePage() {
         </div>
         <div className="home-hero-image">
           <img
-            src="/assets/img/logo.svg"
+            src="/logo.svg"
             alt="Logo Hermanos Jota"
             width="300"
             height="300"
