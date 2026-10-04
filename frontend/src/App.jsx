@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
 import Navbar from './components/navbar/Navbar.jsx';
 import Footer from './components/footer/Footer.jsx';
 import CartPage from './pages/cart-page.jsx';
@@ -10,6 +16,12 @@ import ProductsPage from './pages/products-page.jsx';
 import { obtenerProductos } from './services/productos.js';
 
 function AppLayout({ productos, cargando, error, carrito, agregarAlCarrito }) {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   const cantidadCarrito = carrito.reduce(
     (total, item) => total + item.cantidad,
     0
