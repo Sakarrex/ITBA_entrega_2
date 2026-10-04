@@ -19,18 +19,20 @@ export default function CartPage() {
 
   if (carrito.length === 0) {
     return (
-      <section className="cart-page">
+      <section className="cart-page cart-page-empty">
         <div className="cart-container">
           <h1 className="cart-title">TU CARRITO DE COMPRAS</h1>
 
-          <div className="cart-empty-state">
-            <h2>Tu carrito está vacío</h2>
+          <div className="cart-empty-content">
+            <div className="cart-empty-state">
+              <h2>Tu carrito está vacío</h2>
 
-            <p>Parece que aún no agregaste ningún producto.</p>
+              <p>Parece que aún no agregaste ningún producto.</p>
 
-            <Link to="/productos" className="cart-btn-primary">
-              Explorar Catálogo
-            </Link>
+              <Link to="/productos" className="cart-btn-primary">
+                Explorar Catálogo
+              </Link>
+            </div>
           </div>
         </div>
       </section>
