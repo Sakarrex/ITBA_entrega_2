@@ -1,5 +1,5 @@
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import ProductList from '../components/ProductList.jsx';
+import ProductList from './components/ProductList.jsx';
 
 export default function ProductsPage() {
   const { productos, cargando, error, agregarAlCarrito } = useOutletContext();

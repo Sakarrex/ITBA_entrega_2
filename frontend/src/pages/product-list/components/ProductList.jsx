@@ -1,4 +1,4 @@
-import ProductCard from './ProductCard.jsx';
+import ProductCard from '../../../shared/components/product-card/ProductCard.jsx';
 
 function ProductList({ productos, onSeleccionar, onAgregar }) {
   if (!productos || productos.length === 0) {

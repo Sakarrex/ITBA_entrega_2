@@ -5,6 +5,7 @@ Repositorio para el trabajo integrador grupal del grupo 6 Comisión 1 TT. Consis
 Esta es la **segunda entrega**: la página de la primera entrega (HTML, CSS y JavaScript vanilla) se reescribió con el stack MERN. El frontend ahora es una aplicación React que consume una API propia desarrollada con Node.js y Express.
 
 Integrantes:
+
 - Contreras Valentin Ramiro
 - Dorado Escudero Facundo
 - García Fontana Sebastián José
@@ -13,40 +14,65 @@ Integrantes:
 
 ## Ejecución
 
-Se necesitan los dos servidores corriendo al mismo tiempo, cada uno en su propia terminal.
-
-1. Clonar el repositorio e instalar las dependencias de cada parte:
+Se necesita Node.js y npm instalados. Para clonar el repositorio e instalar las
+dependencias de la raíz, el backend y el frontend, ejecutar desde la raíz:
 
 ```bash
 git clone https://github.com/Sakarrex/ITBA_entrega_2.git
 cd ITBA_entrega_2
-
-cd backend
-npm install
-
-cd ../frontend
-npm install
+npm run install:all
 ```
 
-2. Levantar el backend (corre en `http://localhost:3000`) y el frontend:
+Para iniciar el backend y el frontend juntos:
 
 ```bash
-# Terminal 1
-cd backend
-npm run dev
-
-# Terminal 2
-cd frontend
 npm run dev
 ```
 
-3. Abrir en el navegador la URL que muestra Vite en la terminal (normalmente `http://localhost:5173`).
+El frontend queda disponible normalmente en `http://localhost:5173` y el
+backend en `http://localhost:3000`. Vite redirige las llamadas a `/api` al
+backend durante el desarrollo.
 
-No hace falta configurar variables de entorno. En desarrollo, Vite redirige las llamadas a `/api` hacia `http://localhost:3000`, por lo que el frontend y el backend se conectan solos.
+También se puede iniciar cada parte por separado, desde la raíz:
 
-El puerto del backend se puede cambiar con la variable de entorno `PORT` (por defecto `3000`). Si se cambia, hay que actualizar también el `proxy` en `frontend/vite.config.js`.
+```bash
+# Frontend
+npm run dev --prefix frontend
 
-Para correr el backend sin recarga automática se puede usar `npm start`.
+# Backend
+npm run dev --prefix backend
+```
+
+Para comprobar que el backend responde:
+
+```bash
+curl http://localhost:3000/api/health
+```
+
+En Windows también se puede usar `curl.exe`:
+
+```powershell
+curl.exe http://localhost:3000/api/health
+```
+
+Para ejecutar el lint del monorepo y generar el build del frontend:
+
+```bash
+npm run lint
+npm run build --prefix frontend
+```
+
+El backend usa el puerto `3000` por defecto. Para cambiarlo, definir la
+variable de entorno `PORT` antes de iniciar el backend. Por ejemplo, en
+PowerShell:
+
+```powershell
+$env:PORT=4000; npm run dev --prefix backend
+```
+
+Si se cambia el puerto, también hay que actualizar el `proxy` en
+`frontend/vite.config.js`. Para ejecutar el backend sin recarga automática,
+usar `npm start --prefix backend`.
 
 La primera entrega sigue desplegada en https://muebleria-hermanos.netlify.app/
 
@@ -68,16 +94,19 @@ La primera entrega sigue desplegada en https://muebleria-hermanos.netlify.app/
 - Node.js y Express 5
 - dotenv
 - CSS3
+- ESLint para análisis estático y linting
+- Prettier para el formato del código
+- Husky para ejecutar verificaciones automáticas en los commits
 - Git y GitHub para control de versiones
 
 ## API
 
 Todas las respuestas tienen el formato `{ success, data, message }`.
 
-| Método | Ruta | Descripción |
-| --- | --- | --- |
-| GET | `/api/productos` | Listado completo de productos |
-| GET | `/api/productos/:id` | Producto por id (`404` si no existe) |
+| Método | Ruta                 | Descripción                          |
+| ------ | -------------------- | ------------------------------------ |
+| GET    | `/api/productos`     | Listado completo de productos        |
+| GET    | `/api/productos/:id` | Producto por id (`404` si no existe) |
 
 ## Estructura del proyecto
 

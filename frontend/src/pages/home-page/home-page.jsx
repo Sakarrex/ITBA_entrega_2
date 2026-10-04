@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
-import ProductCard from '../../components/ProductCard.jsx';
+import ProductCard from '../../shared/components/product-card/ProductCard.jsx';
 import './home-page.css';
 
 function obtenerProductosPorPagina(productos, cantidadPorPagina) {

@@ -4,7 +4,7 @@ import {
   useOutletContext,
   useParams,
 } from 'react-router-dom';
-import ProductDetail from '../components/ProductDetail.jsx';
+import ProductDetail from './components/ProductDetail.jsx';
 
 export default function ProductDetailPage() {
   const { productoId } = useParams();

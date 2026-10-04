@@ -9,12 +9,8 @@ const formatearPrecio = new Intl.NumberFormat('es-AR', {
 });
 
 export default function CartPage() {
-  const {
-    carrito,
-    cambiarCantidad,
-    quitarDelCarrito,
-    vaciarCarrito,
-  } = useOutletContext();
+  const { carrito, cambiarCantidad, quitarDelCarrito, vaciarCarrito } =
+    useOutletContext();
 
   const total = carrito.reduce(
     (acumulado, item) => acumulado + item.precio * item.cantidad,
@@ -30,14 +26,9 @@ export default function CartPage() {
           <div className="cart-empty-state">
             <h2>Tu carrito está vacío</h2>
 
-            <p>
-              Parece que aún no agregaste ningún producto.
-            </p>
+            <p>Parece que aún no agregaste ningún producto.</p>
 
-            <Link
-              to="/productos"
-              className="cart-btn-primary"
-            >
+            <Link to="/productos" className="cart-btn-primary">
               Explorar Catálogo
             </Link>
           </div>
@@ -49,28 +40,18 @@ export default function CartPage() {
   return (
     <section className="cart-page">
       <div className="cart-container">
-        <h1 className="cart-title">
-          TU CARRITO DE COMPRAS
-        </h1>
+        <h1 className="cart-title">TU CARRITO DE COMPRAS</h1>
 
         <div className="cart-layout">
           <div className="cart-list">
             {carrito.map((item) => (
-              <article
-                className="cart-item-card"
-                key={item.id}
-              >
+              <article className="cart-item-card" key={item.id}>
                 <div className="cart-item-img">
-                  <img
-                    src={item.imagen}
-                    alt={item.nombre}
-                  />
+                  <img src={item.imagen} alt={item.nombre} />
                 </div>
 
                 <div className="cart-item-details">
-                  <h2 className="cart-item-title">
-                    {item.nombre}
-                  </h2>
+                  <h2 className="cart-item-title">{item.nombre}</h2>
 
                   <p className="cart-item-price">
                     {formatearPrecio.format(item.precio)}
@@ -82,10 +63,7 @@ export default function CartPage() {
                     <button
                       type="button"
                       onClick={() =>
-                        cambiarCantidad(
-                          item.id,
-                          item.cantidad - 1
-                        )
+                        cambiarCantidad(item.id, item.cantidad - 1)
                       }
                       aria-label="Restar una unidad"
                     >
@@ -97,10 +75,7 @@ export default function CartPage() {
                       min="1"
                       value={item.cantidad}
                       onChange={(event) =>
-                        cambiarCantidad(
-                          item.id,
-                          event.target.value
-                        )
+                        cambiarCantidad(item.id, event.target.value)
                       }
                       aria-label={`Cantidad de ${item.nombre}`}
                     />
@@ -108,10 +83,7 @@ export default function CartPage() {
                     <button
                       type="button"
                       onClick={() =>
-                        cambiarCantidad(
-                          item.id,
-                          item.cantidad + 1
-                        )
+                        cambiarCantidad(item.id, item.cantidad + 1)
                       }
                       aria-label="Sumar una unidad"
                     >
@@ -120,17 +92,13 @@ export default function CartPage() {
                   </div>
 
                   <span className="cart-item-subtotal">
-                    {formatearPrecio.format(
-                      item.precio * item.cantidad
-                    )}
+                    {formatearPrecio.format(item.precio * item.cantidad)}
                   </span>
 
                   <button
                     type="button"
                     className="cart-btn-remove"
-                    onClick={() =>
-                      quitarDelCarrito(item.id)
-                    }
+                    onClick={() => quitarDelCarrito(item.id)}
                     aria-label={`Eliminar ${item.nombre}`}
                   >
                     ×
@@ -148,10 +116,7 @@ export default function CartPage() {
                 Vaciar carrito
               </button>
 
-              <Link
-                to="/productos"
-                className="cart-btn-secondary"
-              >
+              <Link to="/productos" className="cart-btn-secondary">
                 Seguir comprando
               </Link>
             </div>
@@ -163,25 +128,19 @@ export default function CartPage() {
             <div className="cart-summary-row">
               <span>Subtotal</span>
 
-              <span>
-                {formatearPrecio.format(total)}
-              </span>
+              <span>{formatearPrecio.format(total)}</span>
             </div>
 
             <div className="cart-summary-row cart-summary-total">
               <span>Total</span>
 
-              <span>
-                {formatearPrecio.format(total)}
-              </span>
+              <span>{formatearPrecio.format(total)}</span>
             </div>
 
             <button
               type="button"
               className="cart-btn-primary cart-btn-checkout"
-              onClick={() =>
-                alert('¡Gracias por tu compra!')
-              }
+              onClick={() => alert('¡Gracias por tu compra!')}
             >
               Finalizar Compra
             </button>

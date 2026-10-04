@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import menuIcon from '../../assets/icons/menu.svg';
-import shoppingCartIcon from '../../assets/icons/shopping_cart.svg';
+import menuIcon from '../../../assets/icons/menu.svg';
+import shoppingCartIcon from '../../../assets/icons/shopping_cart.svg';
 import './Navbar.css';
 
 function Navbar({ cantidadCarrito }) {

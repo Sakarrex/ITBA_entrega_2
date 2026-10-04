@@ -14,28 +14,19 @@ function ProductDetail({ producto, onVolver, onAgregar }) {
 
   return (
     <section className="product-detail">
-      <button
-        type="button"
-        onClick={onVolver}
-        className="product-detail-back"
-      >
+      <button type="button" onClick={onVolver} className="product-detail-back">
         ← Volver al catálogo
       </button>
 
       <div className="product-detail-card">
         <div className="product-detail-main">
           <div className="product-detail-media">
-            <img
-              src={producto.imagen}
-              alt={producto.alt || producto.nombre}
-            />
+            <img src={producto.imagen} alt={producto.alt || producto.nombre} />
           </div>
 
           <div className="product-detail-info">
             {producto.oferta && (
-              <span className="product-card-badge">
-                OFERTA
-              </span>
+              <span className="product-card-badge">OFERTA</span>
             )}
 
             <span className="product-detail-category">
@@ -46,11 +37,7 @@ function ProductDetail({ producto, onVolver, onAgregar }) {
 
             {producto.precioOriginal && (
               <p className="product-card-price-original">
-                <del>
-                  {formatearPrecio.format(
-                    producto.precioOriginal
-                  )}
-                </del>
+                <del>{formatearPrecio.format(producto.precioOriginal)}</del>
               </p>
             )}
 
@@ -58,9 +45,7 @@ function ProductDetail({ producto, onVolver, onAgregar }) {
               {formatearPrecio.format(producto.precio)}
             </p>
 
-            <p className="product-detail-description">
-              {producto.descripcion}
-            </p>
+            <p className="product-detail-description">{producto.descripcion}</p>
 
             <button
               type="button"
@@ -93,9 +78,7 @@ function ProductDetail({ producto, onVolver, onAgregar }) {
 
             <div>
               <span>Stock disponible</span>
-              <strong>
-                {producto.stock} unidades
-              </strong>
+              <strong>{producto.stock} unidades</strong>
             </div>
           </div>
         </div>

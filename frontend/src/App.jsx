@@ -7,13 +7,13 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import Navbar from './components/navbar/Navbar.jsx';
-import Footer from './components/footer/Footer.jsx';
-import CartPage from './pages/cart-page.jsx';
+import Navbar from './shared/components/navbar/Navbar.jsx';
+import Footer from './shared/components/footer/Footer.jsx';
+import CartPage from './pages/cart-page/cart-page.jsx';
 import ContactPage from './pages/contact-page/contact-page.jsx';
 import HomePage from './pages/home-page/home-page.jsx';
-import ProductDetailPage from './pages/product-detail-page.jsx';
-import ProductsPage from './pages/products-page.jsx';
+import ProductDetailPage from './pages/product-detail/product-detail-page.jsx';
+import ProductsPage from './pages/product-list/products-page.jsx';
 import { obtenerProductos } from './services/productos.js';
 
 const CLAVE_LOCAL_STORAGE = 'muebleria_carrito';
@@ -112,9 +112,7 @@ function App() {
 
   function agregarAlCarrito(producto) {
     setCarrito((carritoActual) => {
-      const existe = carritoActual.find(
-        (item) => item.id === producto.id
-      );
+      const existe = carritoActual.find((item) => item.id === producto.id);
 
       if (existe) {
         return carritoActual.map((item) =>
@@ -187,25 +185,13 @@ function App() {
         <Route element={<AppLayout {...layoutProps} />}>
           <Route index element={<HomePage />} />
 
-          <Route
-            path="productos"
-            element={<ProductsPage />}
-          />
+          <Route path="productos" element={<ProductsPage />} />
 
-          <Route
-            path="productos/:productoId"
-            element={<ProductDetailPage />}
-          />
+          <Route path="productos/:productoId" element={<ProductDetailPage />} />
 
-          <Route
-            path="carrito"
-            element={<CartPage />}
-          />
+          <Route path="carrito" element={<CartPage />} />
 
-          <Route
-            path="contacto"
-            element={<ContactPage />}
-          />
+          <Route path="contacto" element={<ContactPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
