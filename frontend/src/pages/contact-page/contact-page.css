@@ -195,7 +195,7 @@
   }
 }
 
-.contact-form [aria-invalid="true"] {
+.contact-form [aria-invalid='true'] {
   border-color: #b3261e;
 }
 
