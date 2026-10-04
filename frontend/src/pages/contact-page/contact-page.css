@@ -194,3 +194,21 @@
     font-size: 1.3rem;
   }
 }
+
+.contact-form [aria-invalid="true"] {
+  border-color: #b3261e;
+}
+
+.contact-form .form-group .form-error {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  min-height: 1.2em;
+  margin: 0.35rem 0 0;
+  color: #b3261e;
+  font-size: 0.85rem;
+}
+
+.contact-form .form-group .form-error:empty {
+  display: none;
+}
