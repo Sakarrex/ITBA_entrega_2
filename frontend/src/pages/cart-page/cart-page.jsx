@@ -76,9 +76,13 @@ export default function CartPage() {
                       type="number"
                       min="1"
                       value={item.cantidad}
-                      onChange={(event) =>
-                        cambiarCantidad(item.id, event.target.value)
-                      }
+                      onChange={(event) => {
+                        const cantidad = Number(event.target.value);
+
+                        if (Number.isInteger(cantidad) && cantidad >= 1) {
+                          cambiarCantidad(item.id, cantidad);
+                        }
+                      }}
                       aria-label={`Cantidad de ${item.nombre}`}
                     />
 

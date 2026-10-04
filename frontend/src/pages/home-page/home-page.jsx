@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import ProductCard from '../../shared/components/product-card/ProductCard.jsx';
 import './home-page.css';
@@ -49,7 +49,10 @@ export default function HomePage() {
     obtenerCantidadPorPagina
   );
   const [paginaActual, setPaginaActual] = useState(0);
-  const productosDestacados = obtenerDestacados(productos);
+  const productosDestacados = useMemo(
+    () => obtenerDestacados(productos),
+    [productos]
+  );
   const paginas = obtenerProductosPorPagina(
     productosDestacados,
     cantidadPorPagina
