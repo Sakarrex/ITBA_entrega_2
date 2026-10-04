@@ -15,7 +15,7 @@ Integrantes:
 ## Ejecución
 
 Se necesita Node.js y npm instalados. Para clonar el repositorio e instalar las
-dependencias de la raíz, el backend y el frontend, ejecutar desde la raíz:
+dependencias de la raíz, el backend y el cliente, ejecutar desde la raíz:
 
 ```bash
 git clone https://github.com/Sakarrex/ITBA_entrega_2.git
@@ -23,7 +23,7 @@ cd ITBA_entrega_2
 npm run install:all
 ```
 
-Para iniciar el backend y el frontend juntos:
+Para iniciar el backend y el cliente juntos:
 
 ```bash
 npm run dev
@@ -37,7 +37,7 @@ También se puede iniciar cada parte por separado, desde la raíz:
 
 ```bash
 # Frontend
-npm run dev --prefix frontend
+npm run dev --prefix client
 
 # Backend
 npm run dev --prefix backend
@@ -59,7 +59,7 @@ Para ejecutar el lint del monorepo y generar el build del frontend:
 
 ```bash
 npm run lint
-npm run build --prefix frontend
+npm run build --prefix client
 ```
 
 El backend usa el puerto `3000` por defecto. Para cambiarlo, definir la
@@ -71,7 +71,7 @@ $env:PORT=4000; npm run dev --prefix backend
 ```
 
 Si se cambia el puerto, también hay que actualizar el `proxy` en
-`frontend/vite.config.js`. Para ejecutar el backend sin recarga automática,
+`client/vite.config.js`. Para ejecutar el backend sin recarga automática,
 usar `npm start --prefix backend`.
 
 La primera entrega sigue desplegada en https://muebleria-hermanos.netlify.app/
@@ -114,20 +114,22 @@ Todas las respuestas tienen el formato `{ success, data, message }`.
 - `backend/controllers/`: lógica de cada endpoint
 - `backend/middlewares/`: middlewares del servidor, incluido el manejador centralizado de errores
 - `backend/data/`: datos locales de los productos
-- `frontend/src/App.jsx`: estado global (productos y carrito) y definición de rutas
-- `frontend/src/components/`: piezas reutilizables (`Navbar`, `Footer`, `ProductList`, `ProductCard`, `ProductDetail`)
-- `frontend/src/pages/`: vistas principales
-  - `home-page`: inicio con carrusel de destacados
-  - `products-page.jsx`: catálogo completo
-  - `product-detail-page.jsx`: detalle de un producto (`/productos/:productoId`)
-  - `cart-page.jsx`: revisión del carrito, gestión de cantidades y total de compra
-  - `contact-page`: formulario de contacto
-- `frontend/src/services/`: llamadas a la API centralizadas con `fetch`
+- `client/src/App.jsx`: estado global (productos y carrito) y definición de rutas
+- `client/src/shared/components/`: componentes reutilizables (`navbar/`, `footer/` y `product-card/`)
+- `client/src/pages/`: vistas principales
+  - `home-page/home-page.jsx`: inicio con carrusel de destacados
+  - `product-list/products-page.jsx`: catálogo completo
+  - `product-list/components/ProductList.jsx`: lista de productos
+  - `product-detail/product-detail-page.jsx`: detalle de un producto (`/productos/:productoId`)
+  - `product-detail/components/ProductDetail.jsx`: detalle y especificaciones del producto
+  - `cart-page/cart-page.jsx`: revisión del carrito, gestión de cantidades y total de compra
+  - `contact-page/contact-page.jsx`: formulario de contacto
+- `client/src/services/`: llamadas a la API centralizadas con `fetch`
 
 ## Decisiones técnicas
 
 - **Estado en `App.jsx`:** productos y carrito se comparten con las páginas mediante el contexto del `Outlet` de React Router, sin agregar librerías de estado.
 - **Persistencia del carrito:** al iniciar, el carrito se lee de `localStorage` (clave `muebleria_carrito`) y un `useEffect` lo guarda cada vez que cambia. Si los datos guardados están dañados, el carrito empieza vacío.
 - **Llamadas a la API en `services/`:** los componentes no conocen las URLs ni el formato de respuesta.
-- **Proxy de Vite:** el frontend llama a rutas relativas (`/api/...`) y Vite las reenvía al backend, evitando problemas de CORS en desarrollo.
+- **Proxy de Vite:** el cliente llama a rutas relativas (`/api/...`) y Vite las reenvía al backend, evitando problemas de CORS en desarrollo.
 - **Sin base de datos en esta entrega:** los productos se leen de archivos locales en `backend/data/`. Mongoose ya está instalado, pero la conexión con MongoDB queda para la siguiente etapa.

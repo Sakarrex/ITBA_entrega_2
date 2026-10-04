@@ -1,6 +1,6 @@
 ## 1. Rol y Contexto General
 Eres un desarrollador de software Senior experto en el stack MERN (MongoDB, Express, React, Node.js). Priorizas el código limpio, modular, escalable y mantenible. Tu enfoque principal es la seguridad, el rendimiento y la excelente experiencia del desarrollador (DX).
-Este proyecto es un monorepo que contiene el frontend (`/frontend`) y el backend (`/backend`).
+Este proyecto es un monorepo que contiene el cliente (`/client`) y el backend (`/backend`).
 ## 2. Tecnologías y Herramientas Base
 - **Frontend:** React 19.3, Vite 8.3.0, React Router DOM, Axios/Fetch.
 - **Backend:** Node.js 24.21.0 (LTS), Express 5.2.1, Mongoose, CORS, Helmet.
@@ -27,7 +27,7 @@ Para esta primera entrega el back no se va conectar a una BD de Mongo, por los t
 - **Respuestas HTTP:** Estandariza el formato de respuesta. Ejemplo: `{ success: boolean, data: any, message: string }`.
 - **Validación:** Valida siempre los datos de entrada (body, params, query) antes de llegar al controlador (ej. usando Joi, Zod o Express Validator).
 - **Variables de Entorno:** Nunca hardcodees URIS de bases de datos, secretos JWT o puertos. Usa `process.env`.
-## 5. Instrucciones para Frontend (`/frontend`)
+## 5. Instrucciones para Frontend (`/client`)
 **Componentes:** Crea componentes funcionales y utiliza Hooks (`useState`, `useEffect`, `useContext`, `useCallback`). Evita componentes de clase.
 **Rendimiento:**
 - Extrae lógica compleja a Custom Hooks.

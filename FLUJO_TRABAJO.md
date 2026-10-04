@@ -19,7 +19,7 @@ La estructura principal del proyecto es:
 
     /
     |-- backend/
-    |-- frontend/
+    |-- client/
     |-- package.json
     |-- eslint.config.js
     |-- commitlint.config.js
@@ -34,13 +34,13 @@ Ejecutar desde la raiz del proyecto:
 
     npm run install:all
 
-Este comando instala las dependencias de la raiz, backend y frontend.
+Este comando instala las dependencias de la raiz, backend y cliente.
 
 Si se necesita instalar cada parte por separado:
 
     npm install
     npm install --prefix backend
-    npm install --prefix frontend
+    npm install --prefix client
 
 3. EJECUTAR EL PROYECTO
 -----------------------
@@ -51,7 +51,7 @@ Ejecutar frontend y backend al mismo tiempo:
 
 Frontend solamente:
 
-    npm run dev --prefix frontend
+    npm run dev --prefix client
 
 El frontend queda disponible normalmente en:
 
@@ -111,15 +111,15 @@ En PowerShell:
 
 Generar el build de produccion:
 
-    npm run build --prefix frontend
+    npm run build --prefix client
 
 Previsualizar el build generado:
 
-    npm run preview --prefix frontend
+    npm run preview --prefix client
 
 El frontend tambien tiene su propio lint:
 
-    npm run lint --prefix frontend
+    npm run lint --prefix client
 
 6. VALIDAR CALIDAD DE CODIGO
 ----------------------------
@@ -156,7 +156,7 @@ En PowerShell:
 
    npm run lint
    npm run format:check
-   npm run build --prefix frontend
+   npm run build --prefix client
 
 3. Agregar los archivos:
 
