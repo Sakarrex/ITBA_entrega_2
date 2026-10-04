@@ -18,7 +18,7 @@ export default function Footer() {
         </section>
 
         <section className="footer-section">
-          <h4>Horarios</h4>
+          <h4>Horarios:</h4>
           <p>Lunes a Viernes: 10:00 - 19:00</p>
           <p>Sábados: 10:00 - 14:00</p>
         </section>
