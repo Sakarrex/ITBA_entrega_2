@@ -12,7 +12,22 @@ export default function ProductCard({ producto, onSeleccionar, onAgregar }) {
     producto;
 
   return (
-    <article className="product-card">
+    <article
+      className="product-card"
+      role="link"
+      tabIndex={0}
+      aria-label={`Ver detalle de ${nombre}`}
+      onClick={() => onSeleccionar(producto)}
+      onKeyDown={(event) => {
+        if (
+          event.target === event.currentTarget &&
+          (event.key === 'Enter' || event.key === ' ')
+        ) {
+          event.preventDefault();
+          onSeleccionar(producto);
+        }
+      }}
+    >
       {oferta && <span className="product-card-badge">OFERTA</span>}
       {imagen && (
         <img
@@ -38,15 +53,11 @@ export default function ProductCard({ producto, onSeleccionar, onAgregar }) {
         <div className="product-card-actions">
           <button
             type="button"
-            className="btn btn-secondary"
-            onClick={() => onSeleccionar(producto)}
-          >
-            Ver detalle
-          </button>
-          <button
-            type="button"
             className="btn btn-primary"
-            onClick={() => onAgregar(producto)}
+            onClick={(event) => {
+              event.stopPropagation();
+              onAgregar(producto);
+            }}
           >
             Agregar al carrito
           </button>
