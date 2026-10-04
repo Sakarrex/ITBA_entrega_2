@@ -11,7 +11,7 @@ const errorMiddleware = (err, req, res, next) => {
     success: false,
     data: null,
     message: err.message || 'Ha ocurrido un error en el servidor.',
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+    stack: process.env.NODE_ENV === 'production' ? null : err.stack,
   });
 };
 
